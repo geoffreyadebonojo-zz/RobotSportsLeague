@@ -12,12 +12,15 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'jquery-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'faker'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'rb-readline'
+  gem 'pry'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
