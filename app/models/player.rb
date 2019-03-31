@@ -1,5 +1,6 @@
 class Player < ApplicationRecord
   belongs_to :team
 
-  enum status: %w(none alternate starter)
+  validates :player_id, uniqueness: true
+  validates :name, uniqueness: true 
 end
