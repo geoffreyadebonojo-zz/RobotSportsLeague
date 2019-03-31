@@ -40,6 +40,6 @@ class TeamsController < ApplicationController
     end
 
     def team_params
-      params.require(:team).permit(:name, :email, :password_digest)
+      params.require('/registration').permit(:name, :email, :password, :password_confirmation)
     end
 end
