@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:show, :destroy, :edit, :update]
 
   def show
   end
@@ -23,7 +23,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(patch_params)
-      redirect_to @team, notice: 'Team was successfully updated.'
+      redirect_to profile_path, notice: 'Team was successfully updated.'
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class TeamsController < ApplicationController
 
   private
     def set_team
-      @team = Team.find(params[:id])
+      @team = Team.find(session[:team_id])
     end
 
     def create_params

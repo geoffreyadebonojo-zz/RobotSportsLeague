@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :teams, only: [:show, :edit, :destroy, :update]
+  resources :teams, only: [:destroy, :update]
 
   get '/home', to: 'landing#show'
+
+  get '/profile', to: 'teams#show'
+  get '/profile/edit', to: 'teams#edit'
+  post '/profile/edit', to: 'teams#update'
 
   get '/login', to: 'session#new'
   post '/login', to: 'session#create'
