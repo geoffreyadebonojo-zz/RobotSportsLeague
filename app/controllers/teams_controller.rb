@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = Team.new(team_params)
+    @team = Team.new(create_params)
 
     if @team.save
       redirect_to @team, notice: 'Team was successfully created.'
@@ -22,7 +22,7 @@ class TeamsController < ApplicationController
   end
 
   def update
-    if @team.update(team_params)
+    if @team.update(patch_params)
       redirect_to @team, notice: 'Team was successfully updated.'
     else
       render :edit
@@ -39,7 +39,11 @@ class TeamsController < ApplicationController
       @team = Team.find(params[:id])
     end
 
-    def team_params
+    def create_params
       params.require('/registration').permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def patch_params
+      params.require(:team).permit(:name, :email, :password, :password_confirmation)
     end
 end

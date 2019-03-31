@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :teams, only: [:show, :edit, :destroy]
+  resources :teams, only: [:show, :edit, :destroy, :update]
 
   get '/home', to: 'landing#show'
 
