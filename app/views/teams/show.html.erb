@@ -10,10 +10,4 @@
   <%= @team.email %>
 </p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @team.password_digest %>
-</p>
-
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to 'Edit', profile_edit_path(@team) %>

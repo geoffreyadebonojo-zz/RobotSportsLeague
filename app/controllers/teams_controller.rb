@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:show, :destroy, :edit, :update]
 
   def show
   end
@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = Team.new(team_params)
+    @team = Team.new(create_params)
 
     if @team.save
       redirect_to @team, notice: 'Team was successfully created.'
@@ -22,8 +22,8 @@ class TeamsController < ApplicationController
   end
 
   def update
-    if @team.update(team_params)
-      redirect_to @team, notice: 'Team was successfully updated.'
+    if @team.update(patch_params)
+      redirect_to profile_path, notice: 'Team was successfully updated.'
     else
       render :edit
     end
@@ -36,10 +36,14 @@ class TeamsController < ApplicationController
 
   private
     def set_team
-      @team = Team.find(params[:id])
+      @team = Team.find(session[:team_id])
     end
 
-    def team_params
+    def create_params
       params.require('/registration').permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def patch_params
+      params.require(:team).permit(:name, :email, :password, :password_confirmation)
     end
 end
