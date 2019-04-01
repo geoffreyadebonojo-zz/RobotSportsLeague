@@ -1,0 +1,22 @@
+<h1>Hello Roster!</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>ID</th>
+    <th>Speed</th>
+    <th>Strength</th>
+    <th>Agility</th>
+    <th>Total</th>
+  </tr>
+<% @roster.each do |player| %>
+  <tr>
+    <td><%= player.name %></td>
+    <td><%= player.player_id %></td>
+    <td><%= player.speed %></td>
+    <td><%= player.strength %></td>
+    <td><%= player.agility %></td>
+    <td><%= player.stats_total %></td>
+  </tr>
+<% end %>
+</table>
