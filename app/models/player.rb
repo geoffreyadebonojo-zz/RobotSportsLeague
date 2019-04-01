@@ -6,7 +6,7 @@ class Player < ApplicationRecord
   validates :player_id, uniqueness: true
   validates :name, uniqueness: true
 
-  enum status: %w(free alternate starter)
+  enum status: %w(free alternate starter unassigned)
 
   def stats_total
     self.strength + self.speed + self.agility
