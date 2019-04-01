@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   get '/registration', to: 'teams#new'
   post '/registration', to: 'teams#create'
 
+  get '/roster', to: 'rosters#index'
+
 end
