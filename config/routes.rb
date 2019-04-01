@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   post '/registration', to: 'teams#create'
 
   get '/roster', to: 'rosters#index'
+  get '/pool', to: 'player_pools#index'
+
+  get '/players', to: 'players#edit'
+  post '/players', to: 'players#update'
 
 end

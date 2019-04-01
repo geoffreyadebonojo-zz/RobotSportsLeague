@@ -8,6 +8,7 @@
     <th>Strength</th>
     <th>Agility</th>
     <th>Total</th>
+    <th>Status</th>
   </tr>
 <% @roster.each do |player| %>
   <tr>
@@ -17,6 +18,7 @@
     <td><%= player.strength %></td>
     <td><%= player.agility %></td>
     <td><%= player.stats_total %></td>
+    <td><%= player.status %></td>
   </tr>
 <% end %>
 </table>
