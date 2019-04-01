@@ -18,4 +18,8 @@ class Team < ApplicationRecord
       )
     end
   end
+
+  def roster
+    self.players.where("on_team = true")
+  end
 end
