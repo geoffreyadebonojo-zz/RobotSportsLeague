@@ -1,0 +1,32 @@
+<h1>Pool o' Players</h1>
+
+<h3>Players on Team: <%= @players_on_team %></h3>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>ID</th>
+    <th>Speed</th>
+    <th>Strength</th>
+    <th>Agility</th>
+    <th>Total</th>
+    <th>Status</th>
+    <th></th>
+  </tr>
+<% @available_players.each do |player| %>
+  <tr>
+    <td><%= player.name %></td>
+    <td><%= player.player_id %></td>
+    <td><%= player.speed %></td>
+    <td><%= player.strength %></td>
+    <td><%= player.agility %></td>
+    <td><%= player.stats_total %></td>
+    <td><%= player.status %></td>
+    <% if player.status == "free" %>
+      <td><%= link_to "Select Player", players_path({player_id: player.player_id ,on_team: 'true'}) %></td>
+    <% elsif player.status == "alternate" || player.status == "starter" || player.status == "unassigned" %>
+      <td><%= link_to "Unselect Player", players_path({player_id: player.player_id, on_team: 'false'}) %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
