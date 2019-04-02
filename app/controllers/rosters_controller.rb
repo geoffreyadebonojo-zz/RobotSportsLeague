@@ -1,8 +1,7 @@
 class RostersController < ApplicationController
 
   def index
-    @roster = current_user.roster.order(name: :desc)
-
+    @roster = current_user.roster.order(:id)
     if params[:sort] == "name"
       @roster = current_user.roster.sort_by_name
     elsif params[:sort] == "player_id"
@@ -15,6 +14,13 @@ class RostersController < ApplicationController
       @roster = current_user.roster.sort_by_agility
     elsif params[:sort] == "stats_total"
       @roster = current_user.roster.sort {|a,b| b.stats_total <=> a.stats_total}
+    end
+  end
+
+  def edit
+    if params[:cmd] == "auto_generate"
+      @roster = current_user.auto_select_players
+      redirect_to roster_path
     end
   end
 end

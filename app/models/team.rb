@@ -38,4 +38,22 @@ class Team < ApplicationRecord
   def free_agents
     self.players.where("status = ?", 0)
   end
+
+  def auto_select_players
+    selected_players = self.roster
+    selected_players.each do |player|
+      player.on_team = false
+      player.status = "free"
+      player.save
+    end
+
+    reselected_players = self.players.sample(15)
+    reselected_players.each do |player|
+      player.on_team = true
+      player.status = "unassigned"
+      player.save
+    end
+
+    reselected_players
+  end
 end
