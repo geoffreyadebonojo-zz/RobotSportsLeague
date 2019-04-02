@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(patch_params)
-      redirect_to profile_path, notice: 'Team was successfully updated.'
+      redirect_to profile_path
     else
       render :edit
     end
