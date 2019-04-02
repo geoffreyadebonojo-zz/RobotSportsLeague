@@ -15,7 +15,7 @@ RSpec.describe 'login process' do
       )
     end
 
-    it 'should succed' do
+    xit 'should succed' do
       visit login_path
       expect(current_path).to eq(login_path)
 
@@ -42,7 +42,7 @@ RSpec.describe 'login process' do
       fill_in "email", with: "wrong@email.com"
       fill_in "password", with: @password
       click_on "Log in"
-      
+
       expect(current_path).to eq(login_path)
     end
   end
