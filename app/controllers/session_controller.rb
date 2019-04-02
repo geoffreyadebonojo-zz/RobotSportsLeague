@@ -6,7 +6,7 @@ class SessionController < ApplicationController
     team = Team.find_by(email: params[:email])
     if team && team.authenticate(params[:email])
       session[:team_id] = team.id
-      redirect_to profile_path
+      redirect_to roster_path
     else
       render :new
     end
