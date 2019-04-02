@@ -29,4 +29,28 @@ class Player < ApplicationRecord
       end
     end
   end
+
+  def self.sort_by_name
+    Player.order(name: :asc)
+  end
+
+  def self.sort_by_player_id
+    Player.order(player_id: :asc)
+  end
+
+  def self.sort_by_strength
+    Player.order(strength: :desc)
+  end
+
+  def self.sort_by_speed
+    Player.order(speed: :desc)
+  end
+
+  def self.sort_by_agility
+    Player.order(agility: :desc)
+  end
+
+  def self.sort_by_stats_total
+    Player.all.sort {|a,b| b.stats_total <=> a.stats_total}
+  end
 end
