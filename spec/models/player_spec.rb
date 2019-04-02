@@ -25,7 +25,7 @@ RSpec.describe Player, type: :model do
     end
   end
 
-  describe "validations" do
+  describe "associations" do
     it "belongs_to team" do
       player = Player.reflect_on_association(:team)
       expect(player.macro).to eq(:belongs_to)
