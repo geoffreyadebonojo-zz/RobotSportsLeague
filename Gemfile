@@ -22,6 +22,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'simplecov'
+  gem 'database_cleaner'
   gem 'rb-readline'
   gem 'pry'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
