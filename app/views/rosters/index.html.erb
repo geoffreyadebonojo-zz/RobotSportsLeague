@@ -2,7 +2,7 @@
 
 <%= link_to "View Pool", pool_path %>
 <%= link_to "Auto Select", edit_roster_path({cmd: "auto_generate"}) %>
-
+<%= render partial: "sorting_links" %>
 <table>
   <tr>
     <th>Name</th>
