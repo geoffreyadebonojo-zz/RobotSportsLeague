@@ -1,7 +1,7 @@
 class RostersController < ApplicationController
 
   def index
-    @roster = current_user.roster.order(:id)
+    @roster = current_user.roster.order(status: :asc)
     if params[:sort] == "name"
       @roster = current_user.roster.sort_by_name
     elsif params[:sort] == "player_id"
