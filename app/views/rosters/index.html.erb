@@ -19,6 +19,14 @@
     <td><%= player.agility %></td>
     <td><%= player.stats_total %></td>
     <td><%= player.status %></td>
+    <% if player.status != "starter" %>
+      <td><%= link_to "Starter", players_path({player_id: player.player_id ,status: 'starter'}) %></td>
+    <% elsif player.status != "alternate" %>
+      <td><%= link_to "Alternate", players_path({player_id: player.player_id, status: 'alternate'}) %></td>
+    <% elsif player.status == "unassigned" %>
+      <td><%= link_to "Starter", players_path({player_id: player.player_id ,status: 'starter'}) %></td>
+      <td><%= link_to "Alternate", players_path({player_id: player.player_id, status: 'alternate'}) %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
