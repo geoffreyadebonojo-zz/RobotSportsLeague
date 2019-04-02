@@ -13,10 +13,7 @@ describe 'user visits registration page' do
       fill_in '_registration_password_confirmation', with: 'AAA'
 
       click_on 'Submit'
-      expect(current_path).to eq(profile_path)
-
-      expect(page).to have_content('ATeam')
-      expect(page).to have_content('theteam@gmail')
+      expect(current_path).to eq(roster_path)
     end
 
     it 'doesnt create a team if email is taken' do
