@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
 
     if @team.save
       session[:team_id] = @team.id
-      redirect_to profile_path, notice: 'Team was successfully created.'
+      redirect_to roster_path, notice: 'Team was successfully created.'
     else
       render :new
     end
@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(patch_params)
-      redirect_to profile_path, notice: 'Team was successfully updated.'
+      redirect_to profile_path
     else
       render :edit
     end

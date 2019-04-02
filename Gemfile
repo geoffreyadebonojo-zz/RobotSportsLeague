@@ -21,6 +21,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'launchy'
+  gem 'active_designer'
   gem 'simplecov'
   gem 'database_cleaner'
   gem 'rb-readline'

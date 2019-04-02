@@ -1,4 +1,4 @@
-<h1>Editing Team</h1>
+<h1>Edit Team Info</h1>
 
 <%= form_with(model: @team, local: true) do |form| %>
   <% if @team.errors.any? %>
@@ -24,4 +24,4 @@
 <% end %>
 
 
-<%= link_to 'Show', @team %>
+<%= link_to 'Back to Profile', profile_path %>
