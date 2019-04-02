@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
 
     if @team.save
       session[:team_id] = @team.id
-      redirect_to profile_path, notice: 'Team was successfully created.'
+      redirect_to roster_path, notice: 'Team was successfully created.'
     else
       render :new
     end
