@@ -15,7 +15,5 @@ class PlayersController < ApplicationController
       @player.save
       redirect_to roster_path
     end
-
   end
-
 end
