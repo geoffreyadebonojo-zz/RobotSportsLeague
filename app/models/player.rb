@@ -49,8 +49,4 @@ class Player < ApplicationRecord
   def self.sort_by_agility
     Player.order(agility: :desc)
   end
-
-  def self.sort_by_stats_total
-    Player.all.sort {|a,b| b.stats_total <=> a.stats_total}
-  end
 end
