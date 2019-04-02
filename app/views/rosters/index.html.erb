@@ -2,16 +2,16 @@
 
 <%= link_to "View Pool", pool_path %>
 <%= link_to "Auto Select", edit_roster_path({cmd: "auto_generate"}) %>
-<%= render partial: "sorting_links" %>
+
 <table>
   <tr>
-    <th>Name</th>
-    <th>ID</th>
-    <th>Speed</th>
-    <th>Strength</th>
-    <th>Agility</th>
-    <th>Total</th>
-    <th>Status</th>
+    <td><%= link_to "Name", roster_path(sort: "name") %></td>
+    <td><%= link_to "Player ID", roster_path(sort: "player_id") %></td>
+    <td><%= link_to "Speed", roster_path(sort: "speed") %></td>
+    <td><%= link_to "Strength", roster_path(sort: "strength") %></td>
+    <td><%= link_to "Agility", roster_path(sort: "agility") %></td>
+    <td><%= link_to "Stats Total", roster_path(sort: "stats_total") %></td>
+    <td>Status</td>
   </tr>
 <% @roster.each do |player| %>
   <tr>
