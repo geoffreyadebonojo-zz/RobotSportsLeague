@@ -20,22 +20,22 @@ class Team < ApplicationRecord
   end
 
   def roster
-    self.players.where("on_team = true")
+    self.players.where("on_team = ?", true)
   end
 
   def unassigned
-    self.players.where("status = 3")
+    self.players.where("status = ?", 3)
   end
 
   def starters
-    self.players.where("status = 2")
+    self.players.where("status = ?", 2)
   end
 
   def alternates
-    self.players.where("status = 1")
+    self.players.where("status = ?", 1)
   end
 
   def free_agents
-    self.players.where("status = 0")
+    self.players.where("status = ?", 0)
   end
 end
