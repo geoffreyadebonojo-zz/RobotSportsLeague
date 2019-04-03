@@ -1,9 +1,22 @@
-<h1>Hello Roster!</h1>
+<h1>Player Roster</h1>
 
-<%= link_to "Auto Select", edit_roster_path({cmd: "auto_generate"}) %>
+<% if @starter_players < 10 %>
+  <h3>Starter Slots Remaining: <%= 10 - @starter_players %></h3>
+<% else %>
+  <h3>All Starters Assigned</h3>
+<% end %>
+
+<% if @alternate_players < 5 %>
+  <h3>Alternate Slots Remaining: <%= 5 - @alternate_players %></h3>
+<% else %>
+  <h3>All Alternates Assigned</h3>
+<% end %>
+
+<%= link_to "Auto Select", edit_roster_path({cmd: "auto_generate"}), data: {confirm:"Are you sure you want to generate a new roster? Your current roster will be lost."} %> |
+<%= link_to "Clear Roster", edit_roster_path({cmd: "clear_roster"}), data: {confirm:"Are you sure you want to clear your roster? This cannot be undone."} %>
 
 <table>
-  <tr>
+  <tr id="roster-headers">
     <td><%= link_to "Name", roster_path(sort: "name") %></td>
     <td><%= link_to "Player ID", roster_path(sort: "player_id") %></td>
     <td><%= link_to "Speed", roster_path(sort: "speed") %></td>
@@ -23,17 +36,26 @@
     <td><%= player.status %></td>
 
     <td>
-      <% if player.status != "starter" %>
-        <%= link_to "Starter", players_path({player_id: player.player_id, status: 'starter'})%>
+      <% if (player.status == "unassigned" || player.status == "alternate") && @starter_players < 10 %>
+        | <%= link_to "Switch to Starter", players_path({player_id: player.player_id, status: 'starter'}) %>
+      <% elsif player.status == "alternate" && @starter_players == 10 %>
+        | Starters Full
       <% end %>
     </td>
 
     <td>
-      <% if player.status != "alternate" %>
-        <%= link_to "Alternate", players_path({player_id: player.player_id, status: 'alternate'}) %>
+      <% if (player.status == "starter" || player.status == "unassigned") && @alternate_players < 5 %>
+      | <%= link_to "Switch to Alternate", players_path({player_id: player.player_id, status: 'alternate'}) %>
+      <% elsif player.status == "starter" && @alternate_players == 5 %>
+      | Alterns Full
       <% end %>
     </td>
 
+    <td>
+      <% if (player.status == "starter" || player.status == "alternate") %>
+        | <%= link_to "Unassign Player", players_path({player_id: player.player_id, status: 'unassigned'}) %>
+      <% end %>
+    </td>
   </tr>
 <% end %>
 </table>

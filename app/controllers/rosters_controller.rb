@@ -2,6 +2,10 @@ class RostersController < ApplicationController
 
   def index
     @roster = current_user.roster.order(status: :asc)
+    @unassigned_players = current_user.unassigned.count
+    @starter_players = current_user.starters.count
+    @alternate_players = current_user.alternates.count
+
     if params[:sort] == "name"
       @roster = current_user.roster.sort_by_name
     elsif params[:sort] == "player_id"
@@ -20,6 +24,11 @@ class RostersController < ApplicationController
   def edit
     if params[:cmd] == "auto_generate"
       @roster = current_user.auto_select_players
+      redirect_to roster_path
+    end
+
+    if params[:cmd] == "clear_roster"
+      @roster = current_user.clear_roster
       redirect_to roster_path
     end
   end

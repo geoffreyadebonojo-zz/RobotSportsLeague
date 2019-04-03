@@ -5,7 +5,7 @@ class Team < ApplicationRecord
   validates :name, uniqueness: true
   validates :email, uniqueness: true
 
-  has_many :players
+  has_many :players, dependent: :destroy
 
   def generate_players
     100.times do
@@ -40,12 +40,7 @@ class Team < ApplicationRecord
   end
 
   def auto_select_players
-    selected_players = self.roster
-    selected_players.each do |player|
-      player.on_team = false
-      player.status = "free"
-      player.save
-    end
+    self.clear_roster
 
     reselected_players = self.players.sample(15)
     reselected_players.each do |player|
@@ -55,5 +50,14 @@ class Team < ApplicationRecord
     end
 
     reselected_players
+  end
+
+  def clear_roster
+    selected_players = self.roster
+    selected_players.each do |player|
+      player.on_team = false
+      player.status = "free"
+      player.save
+    end
   end
 end

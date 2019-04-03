@@ -19,8 +19,8 @@ RSpec.describe "Pool of Players Page" do
   it "displays pool of players" do
     visit pool_path
 
-    expect(page).to have_content("Pool o' Players")
-    expect(page).to have_content("Players on Team: 0")
+    expect(page).to have_content("Pool of Players")
+    expect(page).to have_content("Remaining Slots: 15")
     expect(page).to have_content("Available Players: 100")
     expect(page).to have_content("Name")
     expect(page).to have_content("ID")
@@ -37,9 +37,15 @@ RSpec.describe "Pool of Players Page" do
     visit pool_path
 
     click_link("Select Player", match: :first)
+
+    expect(page).to have_content("Remaining Slots: 14")
+    expect(page).to have_content("Available Players: 99")
+
     click_on("Unselect Player")
 
     expect(page).to_not have_content("Unselect Player")
+    expect(page).to have_content("Remaining Slots: 15")
+    expect(page).to have_content("Available Players: 100")
   end
 
 end

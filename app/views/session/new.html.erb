@@ -1,12 +1,14 @@
 <h1>Please Log In</h1>
 
+<div class="container">
 <%= form_tag login_path do %>
 
-    <%= label_tag :email %>
+    <%= label_tag :email %>:
     <%= text_field_tag :email %>
 
-    <%= label_tag :password %>
-    <%= password_field_tag :password, id: "password-field" %>
+    <%= label_tag :password %>:
+    <%= password_field_tag :password %>
 
   <%= submit_tag "Log In" %>
 <% end %>
+</div>
