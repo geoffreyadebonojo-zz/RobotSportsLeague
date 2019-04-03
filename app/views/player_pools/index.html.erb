@@ -1,6 +1,12 @@
 <h1>Pool o' Players</h1>
 
-<h3>Players on Team: <%= @players_on_team %></h3>
+<h3>
+  <% if @players_on_team == 15 %>
+    Your Team is Full
+  <% else %>
+    Remaining Slots: <%= 15 - @players_on_team %>
+  <% end %>
+</h3>
 <h3>Available Players: <%= @available_players.count %></h3>
 
 <table>
@@ -23,9 +29,9 @@
     <td><%= player.agility %></td>
     <td><%= player.stats_total %></td>
     <td><%= player.status %></td>
-    <% if player.status == "free" %>
+    <% if player.status == "free" && @players_on_team < 15 %>
       <td><%= link_to "Select Player", players_path({player_id: player.player_id ,on_team: 'true'}) %></td>
-    <% elsif player.status == "alternate" || player.status == "starter" || player.status == "unassigned" %>
+    <% elsif player.status != "free" && @players_on_team <= 15 %>
       <td><%= link_to "Unselect Player", players_path({player_id: player.player_id, on_team: 'false'}) %></td>
     <% end %>
   </tr>
