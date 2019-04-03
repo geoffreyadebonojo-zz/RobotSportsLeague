@@ -30,11 +30,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  def destroy
-    @team.destroy
-    redirect_to teams_url, notice: 'Team was successfully destroyed.'
-  end
-
   private
     def set_team
       @team = Team.find(session[:team_id])
