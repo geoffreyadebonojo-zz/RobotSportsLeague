@@ -15,7 +15,7 @@ RSpec.describe 'login process' do
       )
     end
 
-    xit 'should succed' do
+    it 'should succed' do
       visit login_path
       expect(current_path).to eq(login_path)
 
