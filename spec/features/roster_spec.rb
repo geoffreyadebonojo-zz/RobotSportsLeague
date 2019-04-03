@@ -50,9 +50,9 @@ RSpec.describe "Roster Page" do
 
     expect(page).to have_content("Starter Slots Remaining: 10")
     expect(page).to have_content("Alternate Slots Remaining: 5")
-    expect(page).to have_content("unassigned")
-    expect(page).to_not have_content("starter")
-    expect(page).to_not have_content("alternate")
+    expect(page).to have_content("UNASSIGNED")
+    expect(page).to_not have_content("STARTER")
+    expect(page).to_not have_content("ALTERNATE")
     expect(page).to have_content("Switch to Starter")
     expect(page).to have_content("Switch to Alternate")
 
@@ -60,9 +60,9 @@ RSpec.describe "Roster Page" do
 
     expect(page).to have_content("Starter Slots Remaining: 9")
     expect(page).to have_content("Alternate Slots Remaining: 5")
-    expect(page).to_not have_content("unassigned")
+    expect(page).to_not have_content("UNASSIGNED")
     expect(page).to_not have_content("Swith to Starter")
-    expect(page).to have_content("starter")
+    expect(page).to have_content("STARTER")
     expect(page).to have_content("Switch to Alternate")
     expect(page).to have_content("Unassign Player")
 
@@ -70,9 +70,9 @@ RSpec.describe "Roster Page" do
 
     expect(page).to have_content("Starter Slots Remaining: 10")
     expect(page).to have_content("Alternate Slots Remaining: 4")
-    expect(page).to_not have_content("unassigned")
+    expect(page).to_not have_content("UNASSIGNED")
     expect(page).to_not have_content("Switch to Alternate")
-    expect(page).to have_content("alternate")
+    expect(page).to have_content("ALTERNATE")
     expect(page).to have_content("Switch to Starter")
     expect(page).to have_content("Unassign Player")
 
@@ -80,14 +80,17 @@ RSpec.describe "Roster Page" do
 
     expect(page).to have_content("Starter Slots Remaining: 10")
     expect(page).to have_content("Alternate Slots Remaining: 5")
-    expect(page).to have_content("unassigned")
+    expect(page).to have_content("UNASSIGNED")
     expect(page).to have_content("Switch to Starter")
     expect(page).to have_content("Switch to Alternate")
-    expect(page).to_not have_content("alternate")
-    expect(page).to_not have_content("starter")
+    expect(page).to_not have_content("ALTERNATE")
+    expect(page).to_not have_content("STARTER")
     expect(page).to_not have_content("Unassign Player")
   end
 
+  #This test fails because, although it can click the sorting links, it isn't
+  #sending paramaters through when it does. Each link points to roster_path.
+  #This feature works in the browser. 
   xit "allows user to sort roster by player attributes" do
     visit roster_path
     expect(Team.first.roster.count).to eq(0)

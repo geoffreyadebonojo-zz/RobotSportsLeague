@@ -19,15 +19,15 @@ class Player < ApplicationRecord
     if stats_total > 100
       stats_overage = stats_total - 100
 
-      if self.strength > stats_overage
+      if (self.strength > stats_overage) && (self.strength >= 1)
         self.strength -= stats_overage
       end
 
-      if self.speed > stats_overage
+      if (self.speed > stats_overage) && (self.speed >= 1)
         self.speed -= stats_overage
       end
 
-      if self.agility > stats_overage
+      if (self.agility > stats_overage) && (self.agility >= 1)
         self.agility -= stats_overage
       end
     end

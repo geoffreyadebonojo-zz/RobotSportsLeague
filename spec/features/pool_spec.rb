@@ -40,12 +40,17 @@ RSpec.describe "Pool of Players Page" do
 
     expect(page).to have_content("Remaining Slots: 14")
     expect(page).to have_content("Available Players: 99")
+    expect(page).to have_content("UNASSIGNED")
+    expect(page).to_not have_content("STARTER")
+    expect(page).to_not have_content("ALTERNATE")
 
     click_on("Unselect Player")
 
     expect(page).to_not have_content("Unselect Player")
     expect(page).to have_content("Remaining Slots: 15")
     expect(page).to have_content("Available Players: 100")
+    expect(page).to_not have_content("UNASSIGNED")
+
   end
 
 end

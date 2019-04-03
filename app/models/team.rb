@@ -12,9 +12,9 @@ class Team < ApplicationRecord
       self.players.create(
         name: Faker::Name.unique.name,
         player_id: (Faker::Alphanumeric.alpha(4).upcase + rand(99).to_s),
-        speed: rand(50),
-        strength: rand(50),
-        agility: rand(50)
+        speed: rand(1..50),
+        strength: rand(1..50),
+        agility: rand(1..50)
       )
     end
   end
