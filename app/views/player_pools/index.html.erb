@@ -1,4 +1,4 @@
-<h1>Pool o' Players</h1>
+<h1>Pool of Players</h1>
 
 <h3>
   <% if @players_on_team == 15 %>
@@ -7,7 +7,7 @@
     Remaining Slots: <%= 15 - @players_on_team %>
   <% end %>
 </h3>
-<h3>Available Players: <%= @available_players.count %></h3>
+<h3>Available Players: <%= @available_players.count - @players_on_team %></h3>
 
 <table>
   <tr>
