@@ -2,6 +2,10 @@ class RostersController < ApplicationController
 
   def index
     @roster = current_user.roster.order(status: :asc)
+    @unassigned_players = current_user.unassigned.count
+    @starter_players = current_user.starters.count
+    @alternate_players = current_user.alternates.count
+
     if params[:sort] == "name"
       @roster = current_user.roster.sort_by_name
     elsif params[:sort] == "player_id"
