@@ -22,5 +22,10 @@ class RostersController < ApplicationController
       @roster = current_user.auto_select_players
       redirect_to roster_path
     end
+
+    if params[:cmd] == "clear_roster"
+      @roster = current_user.clear_roster
+      redirect_to roster_path
+    end
   end
 end

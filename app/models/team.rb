@@ -56,4 +56,13 @@ class Team < ApplicationRecord
 
     reselected_players
   end
+
+  def clear_roster
+    selected_players = self.roster
+    selected_players.each do |player|
+      player.on_team = false
+      player.status = "free"
+      player.save
+    end
+  end
 end
