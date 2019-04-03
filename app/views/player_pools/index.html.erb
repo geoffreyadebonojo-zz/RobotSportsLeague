@@ -7,10 +7,13 @@
     Remaining Slots: <%= 15 - @players_on_team %>
   <% end %>
 </h3>
-<h3>Available Players: <%= @available_players.count - @players_on_team %></h3>
+<h3>
+  Available Players:
+  <%= @available_players.count - @players_on_team %>
+</h3>
 
 <table>
-  <tr>
+  <tr id="pool-headers">
     <th>Name</th>
     <th>ID</th>
     <th>Speed</th>
