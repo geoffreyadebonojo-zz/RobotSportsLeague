@@ -16,7 +16,7 @@
 <%= link_to "Clear Roster", edit_roster_path({cmd: "clear_roster"}), data: {confirm:"Are you sure you want to clear your roster? This cannot be undone."} %>
 
 <table>
-  <tr>
+  <tr id="roster-headers">
     <td><%= link_to "Name", roster_path(sort: "name") %></td>
     <td><%= link_to "Player ID", roster_path(sort: "player_id") %></td>
     <td><%= link_to "Speed", roster_path(sort: "speed") %></td>
