@@ -12,8 +12,8 @@
   <h3>All Alternates Assigned</h3>
 <% end %>
 
-<%= link_to "Auto Select", edit_roster_path({cmd: "auto_generate"}) %> |
-<%= link_to "Clear Roster", edit_roster_path({cmd: "clear_roster"}) %>
+<%= link_to "Auto Select", edit_roster_path({cmd: "auto_generate"}), data: {confirm:"Are you sure you want to generate a new roster? Your current roster will be lost."} %> |
+<%= link_to "Clear Roster", edit_roster_path({cmd: "clear_roster"}), data: {confirm:"Are you sure you want to clear your roster? This cannot be undone."} %>
 
 <table>
   <tr>
