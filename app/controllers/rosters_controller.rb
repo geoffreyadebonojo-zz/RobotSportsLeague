@@ -1,7 +1,7 @@
 class RostersController < ApplicationController
 
   def index
-    @roster = current_user.roster.order(status: :asc)
+    @roster = current_user.roster.order(player_id: :desc)
     @unassigned_players = current_user.unassigned.count
     @starter_players = current_user.starters.count
     @alternate_players = current_user.alternates.count
