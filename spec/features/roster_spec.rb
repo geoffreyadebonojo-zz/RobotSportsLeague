@@ -23,6 +23,18 @@ RSpec.describe "Roster Page" do
     expect(Team.first.roster.count).to eq(15)
   end
 
+  it "allows user to clear roster" do
+    expect(Team.first.roster.count).to eq(0)
+
+    click_on "Auto Select"
+
+    expect(Team.first.roster.count).to eq(15)
+
+    click_on "Clear Roster"
+
+    expect(Team.first.roster.count).to eq(0)
+  end
+
   it "allows user to pick starters/alternates for roster" do
 
     visit pool_path
