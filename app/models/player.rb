@@ -3,8 +3,11 @@ class Player < ApplicationRecord
 
   before_create :cap_stats
 
-  validates :player_id, uniqueness: true
   validates :name, uniqueness: true
+  validates :player_id, uniqueness: true
+  validates_presence_of :speed
+  validates_presence_of :strength
+  validates_presence_of :agility
 
   enum status: %w(free alternate starter unassigned)
 

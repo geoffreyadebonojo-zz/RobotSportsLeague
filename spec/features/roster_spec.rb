@@ -109,5 +109,8 @@ RSpec.describe "Roster Page" do
 
     click_on "Agility"
     expect(current_path).to eq(roster_path({sort: "agility"}))
+
+    click_on "Stats Total"
+    expect(current_path).to eq(roster_path({sort: "stats_total"}))
   end
 end
