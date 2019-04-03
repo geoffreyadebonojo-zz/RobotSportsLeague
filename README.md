@@ -11,7 +11,7 @@ First clone down this repository to your local machine.
 ```
 
 ### INSTALL GEMS
-2: Next, run the bundle command to install gems.
+Next, run the bundle command to install gems.
 ```
   bundle
 ```
