@@ -7,6 +7,10 @@ label {
   position: relative;
 }
 
+#landing-container {
+  display: flex;
+}
+
 #_registration_name,
 #_registration_email,
 #_registration_password,
