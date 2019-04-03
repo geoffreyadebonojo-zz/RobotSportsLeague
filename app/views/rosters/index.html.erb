@@ -12,48 +12,62 @@
   <h3>All Alternates Assigned</h3>
 <% end %>
 
-<%= link_to "Auto Select", edit_roster_path({cmd: "auto_generate"}), data: {confirm:"Are you sure you want to generate a new roster? Your current roster will be lost."} %> |
-<%= link_to "Clear Roster", edit_roster_path({cmd: "clear_roster"}), data: {confirm:"Are you sure you want to clear your roster? This cannot be undone."} %>
+<% if current_user.roster == [] %>
+  <%= link_to "Auto Select", edit_roster_path({cmd: "auto_generate"}), data: {confirm:"Auto-generate roster of 15 players?"} %> |
+  <%= link_to "Clear Roster", edit_roster_path({cmd: "clear_roster"}), data: {confirm:"Your roster is already empty. Clear anyway?"} %>
+<% else %>
+  <%= link_to "Auto Select", edit_roster_path({cmd: "auto_generate"}), data: {confirm:"Are you sure you want to generate a new roster? Your current roster will be lost."} %> |
+  <%= link_to "Clear Roster", edit_roster_path({cmd: "clear_roster"}), data: {confirm:"Are you sure you want to clear your roster? This cannot be undone."} %>
+<% end %>
 
-<table>
-  <tr id="roster-headers">
-    <td><%= link_to "Name", roster_path(sort: "name") %></td>
-    <td><%= link_to "Player ID", roster_path(sort: "player_id") %></td>
-    <td><%= link_to "Speed", roster_path(sort: "speed") %></td>
-    <td><%= link_to "Strength", roster_path(sort: "strength") %></td>
-    <td><%= link_to "Agility", roster_path(sort: "agility") %></td>
-    <td><%= link_to "Stats Total", roster_path(sort: "stats_total") %></td>
-    <td>Status</td>
-  </tr>
+
+
+<table class="table">
+  <thead>
+    <tr id="roster-headers">
+      <td scope="col"><%= link_to "Player ID", roster_path(sort: "player_id") %></td>
+      <td scope="col"><%= link_to "Name", roster_path(sort: "name") %></td>
+      <td scope="col"><%= link_to "Speed", roster_path(sort: "speed") %></td>
+      <td scope="col"><%= link_to "Strength", roster_path(sort: "strength") %></td>
+      <td scope="col"><%= link_to "Agility", roster_path(sort: "agility") %></td>
+      <td scope="col"><%= link_to "Stats Total", roster_path(sort: "stats_total") %></td>
+      <td scope="col">Status</td>
+      <td scope="col">Assign as Starter</td>
+      <td scope="col">Assign as Alternate</td>
+      <td scope="col">Unassign</td>
+    </tr>
+  </thead>
 <% @roster.each do |player| %>
   <tr>
+    <th scope="row"><%= player.player_id %></th>
     <td><%= player.name %></td>
-    <td><%= player.player_id %></td>
     <td><%= player.speed %></td>
     <td><%= player.strength %></td>
     <td><%= player.agility %></td>
     <td><%= player.stats_total %></td>
-    <td><%= player.status %></td>
+    <td><%= player.status.upcase %></td>
 
     <td>
       <% if (player.status == "unassigned" || player.status == "alternate") && @starter_players < 10 %>
-        | <%= link_to "Switch to Starter", players_path({player_id: player.player_id, status: 'starter'}) %>
+        <%= link_to "Switch to Starter", players_path({player_id: player.player_id, status: 'starter'}), class: "starter-link" %>
       <% elsif player.status == "alternate" && @starter_players == 10 %>
-        | Starters Full
+        <div class="starters-full">Starters Full</div>
       <% end %>
     </td>
 
     <td>
       <% if (player.status == "starter" || player.status == "unassigned") && @alternate_players < 5 %>
-      | <%= link_to "Switch to Alternate", players_path({player_id: player.player_id, status: 'alternate'}) %>
+        <%= link_to "Switch to Alternate", players_path({player_id: player.player_id, status: 'alternate'}), class: "alternate-link" %>
       <% elsif player.status == "starter" && @alternate_players == 5 %>
-      | Alterns Full
+        <div class="alternates-full">Alternates Full</div>
       <% end %>
     </td>
 
     <td>
       <% if (player.status == "starter" || player.status == "alternate") %>
-        | <%= link_to "Unassign Player", players_path({player_id: player.player_id, status: 'unassigned'}) %>
+        <%= link_to "Unassign Player", players_path({player_id: player.player_id, status: 'unassigned'}), class: "unassign-link" %>
+      <% elsif player.status == "unassigned" %>
+        <div class="not-yet-assigned">Unassigned</div>
       <% end %>
     </td>
   </tr>

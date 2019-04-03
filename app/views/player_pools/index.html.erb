@@ -12,30 +12,32 @@
   <%= @available_players.count - @players_on_team %>
 </h3>
 
-<table>
-  <tr id="pool-headers">
-    <th>Name</th>
-    <th>ID</th>
-    <th>Speed</th>
-    <th>Strength</th>
-    <th>Agility</th>
-    <th>Total</th>
-    <th>Status</th>
-    <th></th>
-  </tr>
+<table class="table">
+  <thead>
+    <tr id="pool-headers">
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Speed</th>
+      <th scope="col">Strength</th>
+      <th scope="col">Agility</th>
+      <th scope="col">Total</th>
+      <th scope="col">Status</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
 <% @available_players.each do |player| %>
   <tr>
+    <th scope="row"><%= player.player_id %></th>
     <td><%= player.name %></td>
-    <td><%= player.player_id %></td>
     <td><%= player.speed %></td>
     <td><%= player.strength %></td>
     <td><%= player.agility %></td>
     <td><%= player.stats_total %></td>
-    <td><%= player.status %></td>
+    <td><%= player.status.upcase %></td>
     <% if player.status == "free" && @players_on_team < 15 %>
-      <td><%= link_to "Select Player", players_path({player_id: player.player_id ,on_team: 'true'}) %></td>
+      <td><%= link_to "Select Player", players_path({player_id: player.player_id ,on_team: 'true'}), class: "select-player" %></td>
     <% elsif player.status != "free" && @players_on_team <= 15 %>
-      <td><%= link_to "Unselect Player", players_path({player_id: player.player_id, on_team: 'false'}) %></td>
+      <td><%= link_to "Unselect Player", players_path({player_id: player.player_id, on_team: 'false'}), class: "unselect-player" %></td>
     <% end %>
   </tr>
 <% end %>
