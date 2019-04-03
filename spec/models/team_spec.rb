@@ -16,8 +16,7 @@ RSpec.describe Team, type: :model do
     end
   end
 
-  describe "methods" do
-
+  describe "player sorting methods" do
     before(:each) do
       @team = Team.create(name: "A", email: "B", password: "C")
       @player_1 = @team.players.first
@@ -41,7 +40,6 @@ RSpec.describe Team, type: :model do
       @player_4.save
     end
 
-
     it ".roster" do
       expect(@team.roster.count).to eq(4)
     end
@@ -63,6 +61,31 @@ RSpec.describe Team, type: :model do
 
     it ".free_agents" do
       expect(@team.free_agents.count).to eq(97)
+    end
+  end
+
+  describe "team action methods" do
+    it "can auto-generate a roster of players" do
+      team = Team.create!(name: "D", email: "E", password: "F")
+      expect(team.players.count).to eq(100)
+      expect(team.roster.count).to eq(0)
+
+      team.auto_select_players
+      expect(team.players.count).to eq(100)
+      expect(team.roster.count).to eq(15)
+    end
+
+    it "can clear its roster of players" do
+      team = Team.create!(name: "G", email: "H", password: "I")
+      team.auto_select_players
+
+      expect(team.players.count).to eq(100)
+      expect(team.roster.count).to eq(15)
+
+      team.clear_roster
+
+      expect(team.players.count).to eq(100)
+      expect(team.roster.count).to eq(0)
     end
   end
 end
