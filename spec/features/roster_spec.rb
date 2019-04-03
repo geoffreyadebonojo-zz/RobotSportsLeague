@@ -88,4 +88,26 @@ RSpec.describe "Roster Page" do
     expect(page).to_not have_content("Unassign Player")
   end
 
+  xit "allows user to sort roster by player attributes" do
+    visit roster_path
+    expect(Team.first.roster.count).to eq(0)
+
+    click_on "Auto Select"
+    expect(Team.first.roster.count).to eq(15)
+
+    click_on "Name"
+    expect(current_path).to eq(roster_path({sort: "name"}))
+
+    click_on "Player ID"
+    expect(current_path).to eq(roster_path({sort: "player_id"}))
+
+    click_on "Speed"
+    expect(current_path).to eq(roster_path({sort: "speed"}))
+
+    click_on "Strength"
+    expect(current_path).to eq(roster_path({sort: "strength"}))
+
+    click_on "Agility"
+    expect(current_path).to eq(roster_path({sort: "agility"}))
+  end
 end
